@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lead Time Graph</title>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <!-- bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
+    </script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <link rel="shortcut icon" type="image/x-icon" href="{{url_for('static', filename='img/logo.jpeg')}}" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../static/css/style_sprint.css">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/lead_time.css')}}">
+    <!-- Include Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        /* Add some basic styling */
+        canvas {
+            display: block;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+
+<body>
+
+    {% include 'commons/nav-bar.html' %}
+    
+    <div class="flex-cont">
+        <div class="container">
+            <h1 class="text-center">Cycle Time Graph</h1>
+            <h2 class="text-center" id="loading" style="display: none;">Loading...</h2>
+        </div>
+
+        <!-- Chart -->
+        <div class="graph-container">
+            <canvas id="valueAUCChart" width="800" height="400"></canvas>
+        </div>
+
+        <div class="graph-container">
+            <canvas id="valueAUCChart2" width="800" height="400"></canvas>
+        </div>
+
+    </div>
+
+
+</body>
+<script>
+    // Parse JSON data
+    var jsonData = JSON.parse('{{ bv_auc_delta | tojson | safe}}');
+    var jsonDataAUC = JSON.parse('{{ auc | tojson | safe}}');
+
+    // Extract id and lead_time values from JSON data
+    var ids = jsonData.map(obj => obj[0]);
+    var idsAUC = jsonDataAUC.map(obj => obj[0]);
+
+    // Get the canvas elements
+    var ctx = document.getElementById('valueAUCChart').getContext('2d');
+    var ctx2 = document.getElementById('valueAUCChart2').getContext('2d');
+
+    // Create the first chart
+    var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ids,
+            datasets: [{
+                label: 'Delta',
+                data: jsonData.map(obj => obj[1]),
+                backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                borderColor: 'rgba(54, 162, 235, 1)',
+                borderWidth: 1,
+            }]
+        },
+        options: {
+            plugins: {
+                tooltip: {}
+            },
+            scales: {
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Sprint Days'
+                    }
+                },
+                y: {
+                    title: {
+                        display: true,
+                        text: 'Business Value Delta'
+                    },
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        }
+    });
+
+    // Create the second chart
+    var myChart2 = new Chart(ctx2, {
+        type: 'bar',
+        data: {
+            labels: idsAUC,
+            datasets: [{
+                label: 'AUC',
+                data: jsonDataAUC.map(obj => obj[1]),
+                fill: false,
+                borderColor: 'rgba(255, 99, 132, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            plugins: {
+                tooltip: {}
+            },
+            scales: {
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Sprints'
+                    }
+                },
+                y: {
+                    title: {
+                        display: true,
+                        text: 'AUC in percentage'
+                    },
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        }
+    });
+</script>
+</html>

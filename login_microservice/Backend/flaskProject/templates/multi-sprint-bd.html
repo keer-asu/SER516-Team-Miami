@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team Miami | Burn Down</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../static/css/slug-input.css">
+    <link rel="stylesheet" href="../static/css/burndown-graph.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="shortcut icon" type="image/x-icon" href="{{url_for('static', filename='img/logo.jpeg')}}" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+<body>
+    <div style="display: none;">
+        <div class="loading-container d-flex justify-content-center align-items-center" >
+            <div class="spinner-grow" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>
+    </div>
+
+    {% include 'commons/nav-bar.html' %}
+
+    
+    <main class="flex-container">
+        <section class="flex-items">
+            <div class="flex-item">
+                <h2>Partial Work Done Graph</h2>
+                <div class="graph-container">
+                    <canvas id="partial-work-done-chart"></canvas>
+                </div>
+            </div>
+
+            <div class="flex-item">
+                <h2>Total work Done Graph</h2>
+                <div class="graph-container">
+                    <canvas id="total-work-done-chart"></canvas>
+                </div>
+            </div>
+
+            <div class="flex-item">
+                <h2>Business Value Burndown Graph</h2>
+                <div class="graph-container">
+                    <canvas id="business-value-chart"></canvas>
+                </div>
+            </div>
+        </section>
+    </main>
+
+
+    {% include 'commons/footer.html' %}
+    
+</body>
+<script>
+    var data_to_plot = {{ data_to_plot | tojson }}
+</script>
+<script src="../static/js/multi-sprint-bd.js"></script>
+
+</html>

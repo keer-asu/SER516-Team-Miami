@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team Miami | Login Page</title>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+
+    <!-- bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <link rel="shortcut icon" type="image/x-icon" href="{{url_for('static', filename='img/logo.jpeg')}}" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+
+    <link rel="shortcut icon" type="image/x-icon" href="{{url_for('static', filename='img/logo.jpeg')}}" />
+</head>
+
+<body>
+    <header>
+        <nav class="navbar bg-body-tertiary m-2 p-0 mt-1 mb-0">
+            <div class="container-fluid">
+                <div class="logo-container d-flex flex-row align-items-center">
+                    <a class="navbar-brand" href="#">
+                        <img src="../static/img/team-miaim-logo.jpeg" alt="Logo" width="50" height="44"
+                            class="d-inline-block align-text-top">
+                    </a>
+                    <p class="logo-name">Team Miami</p>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+            <div class="flex-container">                        
+                <!-- logo Container-->
+                <div class="logo">
+                    <h2 class="logo-text">
+                        Hello from Team Miami.
+                    </h2>
+                    <p class="logo-desc">
+                        Enter your Username and Password to login into the project!
+                    <p>
+                    <img src="{{url_for('static', filename='img/logo.jpeg')}}" alt="Logo"
+                        class="logo-img">
+                </div>
+                
+                <!-- form -->
+                <h5 class="form-heading">LOGIN</h5>
+                <form id="login_form" action="/" method = "post" >
+                    <div class="form">
+                        <div class="form-group">
+                            <label for="username">Username:</label>
+                            <input type="text" class="form-control" id="username" name="username" required="" placeholder="Enter your Username">
+                            <!-- <div class="invalid-feedback">please enter username</div> -->
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password:</label>
+                            <input type="password" class="form-control" id="password" name="password" required="" placeholder="Enter your Password">
+                            <!-- <div class="invalid-feedback">please enter password</div> -->
+                        </div>
+                        <button type="submit" id="login_submit" class="btn" >Submit</button>
+                        {% if error %}
+                        <br>
+                        <p style="color: red">Wrong username or password.</p>
+                        {% endif %}
+                    </div>
+                </form>
+            </div>
+    </div>
+
+
+    <footer class="footer">
+        <img src="../static/img/yellow-wave.png" alt="">
+    </footer>
+    
+
+</body>
+  
+      <script> 
+        document.getElementById('log-out-btn').addEventListener('click', function() {
+            window.location.href = '/logout';
+        });
+    </script>
+</html>

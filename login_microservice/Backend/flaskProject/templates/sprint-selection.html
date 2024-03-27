@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Team Miami | Sprint Selection</title>
+    
+        <!-- jQuery -->
+        <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+        <!-- bootstrap -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+            integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+            crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+        <link rel="shortcut icon" type="image/x-icon" href="{{url_for('static', filename='img/logo.jpeg')}}" />
+
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="../static/css/style_sprint.css">
+    </head>
+
+    <body>
+        {% include 'commons/nav-bar.html' %}
+
+        <section class="flex-box">
+            <div class="flex-items">
+                <h3>Select the sprint you want the metric to be applied to</h3>
+                <form method="post" action="/sprint-selection" class="d-flex justify-content-between">
+                    <!-- Radio Buttons -->
+                    <!-- Repeat the structure below for options 1 through 9 -->
+                    <div class="scroll-bar-container">
+                    {% for i in range(1, total_sprints+1) %}
+                    <div class="form-check  d-flex align-items-center justify-content-center select-card" >
+                        <input type="radio" class="form-check-input hide" id="option{{i}}" name="selectionOption" value="{{i}}">
+                        <label class="form-check-label" for="option{{i}}">Sprint {{i}}</label>
+                    </div>
+                    {% endfor %}
+                    
+                    </div>
+                    <button type="submit" class="next-button"><i class="bi bi-arrow-right"></i></button>
+                </form>
+            </div>
+        </section>
+
+        {% include 'commons/footer.html' %}
+    </body>
+
+    <script>
+        window.onload = function() {
+            var radioButtons = document.querySelectorAll('.form-check-input');
+            radioButtons.forEach(function(radioButton) {
+                radioButton.addEventListener('change', function() {
+                    document.querySelectorAll('.select-card').forEach(function(card) {
+                        card.style.backgroundColor = '';
+                    });
+                if (this.checked) {
+                    this.parentElement.style.backgroundColor = '#f7bf51';
+                }
+                });
+            });
+        };
+        
+        document.getElementById('log-out-btn').addEventListener('click', function() {
+            window.location.href = '/logout';
+        });
+    </script>
+    
+</html>

@@ -1,0 +1,160 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+*,
+*::after,
+*::before,
+p {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+*,
+*::after,
+*::before {
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+section.container-bg,
+main.container-bg{
+    border-radius: 15px;
+}
+
+.navbar .container-fluid {
+    border-radius: 15px;
+    background-color: rgba(223, 223, 223, 0.9) !important;
+}
+
+.navbar-brand img{
+    width: 3rem;
+    height: 3rem;
+    margin-left: 1rem;
+}
+
+.logo-name {
+    font-size: 2rem;
+    font-family: "Caveat", cursive;
+}
+
+.log-out-conatiner {
+    --c: #f7bf51;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    padding: 0.65rem 3rem;
+    margin: 1.25rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 1.4rem;
+    margin: auto;
+    display: block;
+    color: #000;
+    background:
+        linear-gradient(90deg, #fff 50%, var(--c) 0) calc(100% - var(--_p, 0%))/200% 100%,
+        linear-gradient(var(--c) 0 0) 0% 100%/var(--_p, 0%) 100% no-repeat;
+    -webkit-background-clip: text, padding-box;
+    background-clip: text, padding-box;
+    transition: 0.5s;
+}
+
+.log-out-conatiner:hover {
+    --_p: 100%;
+}
+
+.logout-icon::before {
+    font-size: 1.5rem;
+}
+
+.log-out-text {
+    font-size: 1.4rem;
+    display: inline-block;
+    font-weight: bold;
+}
+
+.slug-inp-container{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: -5rem;
+}
+
+.slug-inp-container .conatiner{
+    height: 50vh;
+}
+.slug-inp-grp{
+    margin: auto 25%;
+}
+
+.slug-inp-grp h3{
+    margin: 0.75rem;
+    padding: 0.75rem;
+}
+
+.slug-inp-grp input{
+    padding: 10px;
+    font-size: 1.2rem;
+    font-weight: 100;
+}
+
+.slug-inp-container{
+    display: flex;
+    flex: 1;
+}
+
+button.slug-submit-btn{
+    border-radius: 0.5rem;
+    cursor: pointer;
+    padding: 0.65rem 3rem;
+    margin: 1.25rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 1.4rem;
+    margin: auto;
+    display: block;
+    --c: #f7bf51;
+    color: #000;
+    background:
+        linear-gradient(90deg, #fff 50%, var(--c) 0) calc(100% - var(--_p, 0%))/200% 100%,
+        linear-gradient(var(--c) 0 0) 0% 100%/var(--_p, 0%) 100% no-repeat;
+    -webkit-background-clip: text, padding-box;
+    background-clip: text, padding-box;
+    transition: 0.5s;
+}
+
+button.slug-submit-btn:hover{
+    --_p: 100%;
+}
+
+main{
+    z-index: 2;
+}
+
+.alert-container{
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translate(-50%);
+    max-height: 30vh;
+    overflow: scroll;
+}
+
+.footer{
+    width: 100vw;
+    bottom: 0;
+}
+
+.footer img{
+    width: 100%;
+    height: 30vh;
+}
+

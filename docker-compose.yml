@@ -7,6 +7,21 @@ services:
       - "5000:5000"
     environment:
       - TAIGA_URL=https://api.taiga.io/api/v1
+      - LOGIN_MICROSERVICE_BASE_URL=http://login_microservice:5001
     volumes:
       - .:/app
     working_dir: /app/Backend
+    networks:
+      - microservice_network
+    
+  login_microservice:
+    build: ./login_microservice
+    expose:
+      - "5000"
+    networks:
+      - microservice_network
+  
+networks:
+  microservice_network:
+    driver: bridge
+

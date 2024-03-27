@@ -1,0 +1,145 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+/* styles.css */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Roboto", sans-serif;
+}
+
+body{
+    background-color: #fff;
+}
+
+.btn{
+    border-radius: 0.5rem;
+    cursor: pointer;
+    padding: 0.65rem 3rem;
+    margin: 1.25rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 1.4rem;
+    margin: auto;
+    display: block;
+    --c: #f7bf51;
+    color: #000;
+    background:
+        linear-gradient(90deg, #fff 50%, var(--c) 0) calc(100% - var(--_p, 0%))/200% 100%,
+        linear-gradient(var(--c) 0 0) 0% 100%/var(--_p, 0%) 100% no-repeat;
+    -webkit-background-clip: text, padding-box;
+    background-clip: text, padding-box;
+    transition: 0.5s;
+    border: 1px solid black;
+}
+
+.btn:hover{
+    color: black;
+    --_p: 100%;
+}
+
+.navbar .container-fluid {
+    border-radius: 15px;
+    background-color: rgba(223, 223, 223, 0.9) !important;
+}
+
+.navbar-brand img{
+    width: 3rem;
+    height: 3rem;
+    margin: 0.5rem 0.25rem;
+}
+
+.logo-name {
+    font-size: 2rem;
+    font-family: "Caveat", cursive;
+    margin: 0.1rem 0.25rem;
+}
+
+.container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.2rem;
+    flex: 1;
+    width: 35vw;
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+}
+
+.flex-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #03030337 !important;
+    padding: 1.75rem;
+    flex-direction: column;
+    color: black;
+    border: 1px solid black;
+    flex: 1;
+    width: 100%
+}
+
+.flex-container .logo{
+    padding: 0.25rem;
+    margin: 0.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.flex-container .logo .logo-text,
+.flex-container .logo .logo-desc{
+    margin: 0.2rem;
+    padding: 0.2rem;
+}
+
+.flex-container .logo .logo-img{
+    width: 8rem;
+    height: 7.5rem;
+    border: 1px solid black;
+    border-radius: 50%;
+    padding: 0.25rem;
+    margin: 0.5rem;
+}
+
+.flex-container .form-heading{
+    font-size: 1.5rem;
+    margin: 0.2rem;
+    padding: 0.2rem;
+}
+
+.flex-container .form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.flex-container .form .form-group{
+    padding: 0.25rem;
+    margin: 0.25rem;
+}
+
+.flex-container .form .form-group input{
+    width: 100%;
+    padding: 0.75rem 1.5rem;
+    margin: 0.25rem;
+}
+
+.flex-container .form .form-group label{
+    text-align: center;
+}
+
+.footer{
+    display: flex;
+    flex: 1;
+    width: 100vw;
+    bottom: 0;
+}
+
+.footer img{
+    width: 100%;
+    height: 30vh;
+}

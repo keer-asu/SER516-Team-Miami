@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team Miami | Slug Input</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Protest+Riot&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/slug-input.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="../static/css/metric.css">
+
+</head>
+<body>
+    <header>
+        <nav class="navbar bg-body-tertiary m-2 p-0 mt-1 mb-0">
+            <div class="container-fluid p-4">
+                <div class="logo-container d-flex flex-row align-items-center">
+                    <a class="navbar-brand" href="#">
+                        <img src="../static/img/team-miaim-logo.jpeg" alt="Logo" width="50" height="44"
+                            class="d-inline-block align-text-top">
+                    </a>
+                    <p class="logo-name">Team Miami</p>
+                </div>
+                <div class="d-flex flex-row align-items-center">
+                    <button class="navbar-toggler p-3 log-out-container " id = "log-out-btn" type="button" data-bs-toggle="offcanvas"
+                        data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar"
+                        aria-label="Toggle navigation">
+                        <i class="bi bi-box-arrow-left logout-icon"></i>
+                        <p class="log-out-text ms-1">Logout</p>
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="m-2 slug-inp-container container-bg">
+        <section class="container container-bg m-6 mt-0">
+            <div class="options-container p-4">
+                <h3>Select an Option</h3>
+                <form method = "post" action = "/burndown-metric-parameter">
+                    <div class="mb-3 form-check">
+                        <input type="radio" class="form-check-input" id="partialSum" name="workOption" value = "partialSum">
+                        <label class="form-check-label" for="partialSum">Partial Running Sum of Work DONE</label>
+                    </div>
+                    <div class="mb-3 form-check">
+                        <input type="radio" class="form-check-input" id="totalSum" name="workOption" value = "totalSum">
+                        <label class="form-check-label" for="totalSum">Total Running Sum of Work DONE</label>
+                    </div>
+                    <div class="mb-3 form-check">
+                        <input type="radio" class="form-check-input" id="businessValues" name="workOption" value="businessValues">
+                        <label class="form-check-label" for="businessValues">Business Values of Work Done</label>
+                    </div>
+                    <button type="sbumit" class="btn btn-light btn-m mt-3 slug-submit-btn">Submit</button>
+                </form>
+            </div>
+        </section>
+        <script>
+            
+                document.getElementById('log-out-btn').addEventListener('click', function() {
+                    window.location.href = '/logout';
+                });
+            </script>
+    </main>
+</body>
+</html>

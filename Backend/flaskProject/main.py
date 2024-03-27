@@ -53,17 +53,18 @@ app.secret_key = secrets.token_hex(16)
 def loginPage():
     if "auth_token" in session:
         return redirect("/slug-input")
-
+    
     if request.method == "POST":
-        username = request.form["username"]
-        password = request.form["password"]
-        auth_token = authenticate(username, password)
-        if auth_token:
-            session["auth_token"] = auth_token
+        micro_login_response = requests.post(
+            "http://login_microservice:5000/login",
+            data = request.form
+        )
+        if micro_login_response.status_code == 200:
+            session["auth_token"] = micro_login_response.json()["auth_token"]
             return redirect("/slug-input")
         else:
             return render_template("login2.html", error=True)
-
+        
     return render_template("login2.html", error=False)
 
 
