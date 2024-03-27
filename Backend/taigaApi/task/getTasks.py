@@ -3,6 +3,7 @@ import requests
 from dotenv import load_dotenv
 from datetime import datetime
 import asyncio
+import pandas
 
 from taigaApi.utils.asyncAPIs import build_and_execute_apis
 
@@ -182,3 +183,23 @@ def get_lead_times_for_tasks(project_id, sprint_id, auth_token):
         task['finished_date'] = datetime.strftime(datetime.fromisoformat(task['finished_date']), '%d %b %y')
     return taskList
 
+def get_lead_times_for_arbitrary_timeframe(project_id, start_time, end_time, auth_token):
+    all_tasks = get_tasks(project_id, auth_token)
+    tasks = [{
+        "id" : task['ref'],
+        "created_date": task['created_date'],
+        "finished_date": task['finished_date'],
+    } for task in all_tasks if task.get("is_closed")
+        ]
+    date_list = pandas.date_range(start_time, end_time)
+    result = (lambda : { datetime.fromisoformat(str(date).split(' ')[0]).strftime('%b %d') : [] for date in date_list })()
+    start_time = datetime.fromisoformat(start_time)
+    end_time = datetime.fromisoformat(end_time)
+    for task in tasks:
+        if isinstance(task['finished_date'], str) and start_time.timestamp() <= datetime.fromisoformat(task['finished_date']).timestamp() <= end_time.timestamp():
+            task_start_date = datetime.fromisoformat(task['created_date'])
+            task_end_date = datetime.fromisoformat(task['finished_date'])
+            lead_time = round((task_end_date - task_start_date).days + (task_end_date - task_start_date).seconds/86400,2)
+            result[datetime.fromisoformat(task['finished_date']).strftime('%b %d')] += [{task['id']:lead_time}]
+
+    return result
